@@ -1,12 +1,24 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import "./Cards.css";
 import Button from '@material-ui/core/Button';
-import Image from '../images/IMG_2969.jpeg';
-import Image2 from '../images/IMG_0203.jpeg';
+import axios from 'axios';
 
 function Cards() {
 
     const [nextRoundImgs, setImages] = useState([])
+
+    // Runs this once, not again. THIS IS A HOOK
+    // Async function inside useEffect 
+
+    useEffect(() => {
+        async function fetchData() {
+            const req = await axios.get('/polly/cards');
+
+            setImages(req.data);
+        }
+
+        fetchData();
+    }, []);
 
     return (
         <div className="pollyCards">
@@ -16,17 +28,33 @@ function Cards() {
                 {/* Button onClick: 
                 // 1. Clicked item moved into new "Next Round" collection of photos
                 // 2. Two new pictures to replace the old ones. */}
-                <Button className="leftCard" onClick={() => {setImages(nextRoundImgs.concat(Image));  console.log(nextRoundImgs)}}> 
-                    <div className="card" style={{ backgroundImage: `url(${Image})`}}>
+
+                {/* TO GET A RANDOM DOCUMENT FROM MONGO DB - use $sample and set size: 1
+                https://stackoverflow.com/questions/2824157/random-record-from-mongodb
+
+                db.mycoll.aggregate([{ $sample: { size: 1 } }])
+                */}
+                {nextRoundImgs.map((imgs) =>(
+
+                
+
+                <Button className="leftCard" onClick={() => {console.log(nextRoundImgs)}}> 
+                    <div className="card" style={{ backgroundImage: "url(" + imgs.path + ")"}}>
                         
                     </div>  
                 </Button>
+                ))}
 
-                <Button className="rightCard" onClick={() => {alert('rightCard Wins!')}}>
-                    <div className="card" style={{ backgroundImage: `url(${Image2})`}}>             
+                {nextRoundImgs.map((imgs) =>(
+
+                <Button className="rightCard" onClick={() => {console.log(imgs); alert('rightCard Wins!')}}>
+                    <div className="card" style={{ backgroundImage: "url(" + imgs.path +")"}}>             
                     
                     </div>
                 </Button>
+
+                ))}
+                
             </div>
         </div>
     )
