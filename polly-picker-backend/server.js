@@ -1,6 +1,6 @@
 import express from 'express';
 import mongoose from 'mongoose';
-import pollypicker from './dbCards.js';
+import cards from './dbCards.js';
 import Cors from 'cors';
 
 // App Config
@@ -23,9 +23,9 @@ mongoose.connect(connection_url, {
 // API Endpoints
 app.get('/', (req, res) => res.status(200).send('Hello World!'));
 
-app.get('/polly/pp', (req, res ) => {
+app.get('/polly/cards', (req, res ) => {
 
-    pollypicker.find((err, data) => {
+    cards.find((err, data) => {
         if (err) {
             res.status(500).send(err)
         } else {
@@ -34,7 +34,7 @@ app.get('/polly/pp', (req, res ) => {
     })
 });
 
-app.post('/polly/pp', (req, res ) => {
+app.post('/polly/cards', (req, res ) => {
     const dbCard = req.body;
 
     pollypicker.create(dbCard, (err, data) => {
