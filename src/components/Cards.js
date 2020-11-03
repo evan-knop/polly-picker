@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import "./Cards.css";
 import Button from '@material-ui/core/Button';
 import axios from '../axios';
+import img1 from '../images/IMG_0039.jpeg';
 
 function Cards() {
 
@@ -37,11 +38,10 @@ function Cards() {
                 {nextRoundImgs.map((imgs) =>(
 
                 <Button className="leftCard" key={imgs._id} onClick={() => {console.log(imgs.path)}}> 
-                    <div className="card"  style={{ backgroundImage: "url(../images/IMG_0039.jpeg)"}}>
+                    <div className="card"  style={{ backgroundImage: `url(${img1})` }}>
                         
 
                     {/* <div style={{ backgroundImage: `url(require("images/img.svg"))` }}> */}
-
 
                     </div>  
                 </Button>
