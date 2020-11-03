@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import "./Cards.css";
 import Button from '@material-ui/core/Button';
-import axios from 'axios';
+import axios from '../axios';
 
 function Cards() {
 
@@ -12,7 +12,7 @@ function Cards() {
 
     useEffect(() => {
         async function fetchData() {
-            const req = await axios.get('/polly/cards');
+                const req = await axios.get('/cards');
 
             setImages(req.data);
         }
