@@ -12,7 +12,7 @@ function Cards() {
 
     useEffect(() => {
         async function fetchData() {
-                const req = await axios.get('/cards');
+                const req = await axios.get('/polly/pp');
 
             setImages(req.data);
         }

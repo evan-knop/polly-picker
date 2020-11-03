@@ -1,12 +1,12 @@
 import express from 'express';
 import mongoose from 'mongoose';
-import cards from './dbCards.js';
+import pollypicker from './dbCards.js';
 import Cors from 'cors';
 
 // App Config
 const app = express();
 const port = process.env.PORT || 8000;
-const connection_url = 'mongodb+srv://admin:Tz5ARSoSMUY75I8G@cluster0.fojbh.mongodb.net/pollyDb?retryWrites=true&w=majority'
+const connection_url = 'mongodb+srv://admin:Tz5ARSoSMUY75I8G@cluster0.fojbh.mongodb.net/sample-apps?retryWrites=true&w=majority'
 
 // Middleware
 app.use(express.json());
@@ -23,9 +23,9 @@ mongoose.connect(connection_url, {
 // API Endpoints
 app.get('/', (req, res) => res.status(200).send('Hello World!'));
 
-app.get('/cards', (req, res ) => {
+app.get('/polly/pp', (req, res ) => {
 
-    cards.find((err, data) => {
+    pollypicker.find((err, data) => {
         if (err) {
             res.status(500).send(err)
         } else {
@@ -34,10 +34,10 @@ app.get('/cards', (req, res ) => {
     })
 });
 
-app.post('/cards', (req, res ) => {
+app.post('/polly/pp', (req, res ) => {
     const dbCard = req.body;
 
-    cards.create(dbCard, (err, data) => {
+    pollypicker.create(dbCard, (err, data) => {
         if (err) {
             res.status(500).send(err)
         } else {

@@ -9,4 +9,4 @@ const cardSchema = mongoose.Schema({
 })
 
 // mongoose.model(tableName, schema from above) 
-export default mongoose.model('cards', cardSchema);
+export default mongoose.model('polly-picker', cardSchema);
