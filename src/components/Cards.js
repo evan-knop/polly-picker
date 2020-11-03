@@ -36,16 +36,17 @@ function Cards() {
                 */}
                 {nextRoundImgs.map((imgs) =>(
 
-                
-
-                <Button className="leftCard" onClick={() => {console.log(nextRoundImgs)}}> 
-                    <div className="card" style={{ backgroundImage: "url(" + imgs.path + ")"}}>
+                <Button className="leftCard" key={imgs._id} onClick={() => {console.log(imgs.path)}}> 
+                    <div className="card"  style={{ backgroundImage: "url(../images/IMG_0039.jpeg)"}}>
                         
+
+                    {/* <div style={{ backgroundImage: `url(require("images/img.svg"))` }}> */}
+
+
                     </div>  
                 </Button>
                 ))}
-
-                {nextRoundImgs.map((imgs) =>(
+                {/* {nextRoundImgs.map((imgs) =>(
 
                 <Button className="rightCard" onClick={() => {console.log(imgs); alert('rightCard Wins!')}}>
                     <div className="card" style={{ backgroundImage: "url(" + imgs.path +")"}}>             
@@ -53,7 +54,7 @@ function Cards() {
                     </div>
                 </Button>
 
-                ))}
+                ))} */}
                 
             </div>
         </div>
