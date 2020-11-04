@@ -14,7 +14,7 @@ import img8 from '../images/IMG_2988.jpeg';
 
 function Cards() {
 
-    const images = [
+   let images = [
         img1,
         img2,
         img3,
@@ -24,6 +24,8 @@ function Cards() {
         img7,
         img8
     ];
+
+    let nextImages = [];
 
     const [randomNumber, setRandomNumber] = useState(0)
 
@@ -37,19 +39,14 @@ function Cards() {
         <div className="pollyCards">
             <div className = "pollyCards__cardContainer">
                 
-
-                {/* Button onClick: 
-                // 1. Clicked item moved into new "Next Round" collection of photos
-                // 2. Two new pictures to replace the old ones. */}
-
-                {/* TO GET A RANDOM DOCUMENT FROM MONGO DB - use $sample and set size: 1
-                https://stackoverflow.com/questions/2824157/random-record-from-mongodb
-
-                db.mycoll.aggregate([{ $sample: { size: 1 } }])
-                */}
-                {/* {nextRoundImgs.map((imgs) =>( */}
-
-                <Button className="leftCard" onClick={generateRandomNumber}> 
+                <Button className="leftCard" onClick={() => 
+                        {generateRandomNumber(); 
+                        console.log("Random number : " + randomNumber);
+                        nextImages.push(images[randomNumber]);
+                        console.log("Next images : " + nextImages);
+                        images.splice(randomNumber-1, 1);
+                        console.log("Images : " + images);}}
+                > 
                     <div className="card"  style={{ backgroundImage: `url(${images[randomNumber]})` }}>
                     </div>  
                 </Button>
