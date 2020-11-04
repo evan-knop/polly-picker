@@ -1,7 +1,6 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import "./Cards.css";
 import Button from '@material-ui/core/Button';
-import axios from '../axios';
 import img1 from '../images/60225547512__DC211E24-228F-44FA-9917-EAE11856F8FC.jpeg';
 import img2 from '../images/IMG_0039.jpeg';
 import img3 from '../images/IMG_0128.jpeg';
@@ -15,20 +14,24 @@ import img8 from '../images/IMG_2988.jpeg';
 
 function Cards() {
 
-    const [nextRoundImgs, setImages] = useState([])
+    const images = [
+        img1,
+        img2,
+        img3,
+        img4,
+        img5,
+        img6,
+        img7,
+        img8
+    ];
 
-    // Runs this once, not again. THIS IS A HOOK
-    // Async function inside useEffect 
+    const [randomNumber, setRandomNumber] = useState(0)
 
-    // useEffect(() => {
-    //     async function fetchData() {
-    //         const req = await axios.get('/polly/cards');
 
-    //         setImages(req.data);
-    //     }
-
-    //     fetchData();
-    // }, []);
+    const generateRandomNumber = () => {
+        const randomNumber = Math.floor(Math.random() * images.length);
+        setRandomNumber(randomNumber)
+    }
 
     return (
         <div className="pollyCards">
@@ -46,24 +49,15 @@ function Cards() {
                 */}
                 {/* {nextRoundImgs.map((imgs) =>( */}
 
-                <Button className="leftCard" onClick={() => {console.log('')}}> 
-                    <div className="card"  style={{ backgroundImage: `url(${img1})` }}>
-                        
-
-                    {/* <div style={{ backgroundImage: `url(require("images/img.svg"))` }}> */}
-
+                <Button className="leftCard" onClick={generateRandomNumber}> 
+                    <div className="card"  style={{ backgroundImage: `url(${images[randomNumber]})` }}>
                     </div>  
                 </Button>
-                {/* ))} */}
-                {/* {nextRoundImgs.map((imgs) =>(
 
-                <Button className="rightCard" onClick={() => {console.log(imgs); alert('rightCard Wins!')}}>
-                    <div className="card" style={{ backgroundImage: "url(" + imgs.path +")"}}>             
-                    
-                    </div>
+                <Button className="rightCard" onClick={generateRandomNumber}> 
+                    <div className="card"  style={{ backgroundImage: `url(${images[randomNumber]})` }}>
+                    </div>  
                 </Button>
-
-                ))} */}
                 
             </div>
         </div>
